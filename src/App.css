@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+.npm__react-simple-code-editor__textarea{
+  position: relative !important;
+  overflow: scroll !important;
+  -webkit-text-fill-color: inherit !important;
+}
