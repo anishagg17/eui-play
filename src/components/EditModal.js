@@ -12,25 +12,7 @@ import Fade from "@material-ui/core/Fade";
 
 import styled from "styled-components";
 import codes from "../constants/codes";
-
-import {
-  EuiButton,
-  EuiFormRow,
-  EuiPopover,
-  EuiSpacer,
-  EuiSwitch,
-  EuiBadge,
-} from "@elastic/eui";
-
-const scope = {
-  styled,
-  EuiButton,
-  EuiFormRow,
-  EuiPopover,
-  EuiSpacer,
-  EuiSwitch,
-  EuiBadge,
-};
+import scope from "../constants/scope";
 
 const useStyles = makeStyles(theme => ({
   modal: {
