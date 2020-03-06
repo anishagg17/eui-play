@@ -6,6 +6,19 @@ import styled from "styled-components";
 import { UserContext } from "../porvider/userProvider";
 import { firestore } from "../fbConfig";
 import scope from "../constants/scope";
+import { Typography as _Typography } from "@material-ui/core";
+
+const Typography = styled(_Typography)`
+  width: 98vh;
+  color: rgb(226, 226, 226);
+  display: block;
+  font-family: system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  system-ui,"helvetica neue",helvetica,arial,sans-serif.aifont-size: 28px;
+  font-weight: 500;
+  height: 36px;
+  line-height: 36px;
+  margin: 2vh auto 4vh auto;
+`;
 
 const Container = styled.div`
   width: 80vw;
@@ -126,10 +139,8 @@ const TestComponent = props => {
   const user = React.useContext(UserContext);
   let email = null;
   if (user) email = user.email;
-  // const { email } = user;
   const Result = live.element;
   const [desc, UpdateDesc] = React.useState("");
-  const [code, UpdateCode] = React.useState(live.code);
 
   // console.log(props.live.onChange);
   const Submit = async () => {
@@ -145,7 +156,6 @@ const TestComponent = props => {
       try {
         // const ref =
         await firestore.collection("Eui").add(item);
-        // console.log("ref", ref);
       } catch (error) {
         console.log("error", error);
       }
@@ -199,6 +209,9 @@ export default class Live extends React.Component {
   render() {
     return (
       <>
+        <Typography variant="h4">
+          Publish your own component in Community
+        </Typography>
         <LiveProvider
           code='<div><EuiLoadingSpinner size="m" /></div>'
           scope={scope}

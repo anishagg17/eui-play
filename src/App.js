@@ -62,7 +62,7 @@ const App = props => {
           <Route path="/create" exact component={Live} />
           <Route path="/Community">
             <Full>
-              <Typography variant="h5">
+              <Typography variant="h4">
                 Several componets created by Community
               </Typography>
               <EuiSpacer size="s" />
@@ -71,6 +71,9 @@ const App = props => {
                   <div key={id}>
                     <Typography variant="h6">
                       {desc && desc.length > 0 ? desc : "No description"}
+                    </Typography>{" "}
+                    <Typography variant="h8">
+                      Created by : {email ? email : "Anonymus"}
                     </Typography>
                     <Editor code={code} />
                   </div>
