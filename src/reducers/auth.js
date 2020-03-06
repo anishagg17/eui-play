@@ -9,9 +9,9 @@ export default async function(state = initialState, action) {
 
   switch (type) {
     case "SET_USER":
-      await auth.onAuthStateChanged(u => {
-        console.log("u", u);
-      });
+      // await auth.onAuthStateChanged(u => {
+      //   console.log("u", u);
+      // });
       console.log(payload);
       return {
         user: payload,

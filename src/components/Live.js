@@ -3,6 +3,8 @@ import _ErrorIcon from "@material-ui/icons/Error";
 import { LiveProvider, LiveEditor, withLive } from "react-live";
 import { EuiSpacer } from "@elastic/eui";
 import styled from "styled-components";
+import { UserContext } from "../porvider/userProvider";
+import { firestore } from "../fbConfig";
 
 const Container = styled.div`
   width: 80vw;
@@ -119,9 +121,28 @@ const Input = styled.input`
 `;
 
 const TestComponent = ({ live }) => {
+  const user = React.useContext(UserContext);
+  let email = null;
+  if (user) email = user.email;
+  // const { email } = user;
   const Result = live.element;
   const [desc, UpdateDesc] = React.useState("");
   // console.log(live);
+  const Submit = async (d, code) => {
+    if (email) {
+      let item = { desc: d, code };
+      item.email = email;
+      console.log("item", item);
+
+      try {
+        const ref = await firestore.collection("Eui").add(item);
+        console.log("ref", ref);
+      } catch (error) {
+        console.log("error", error);
+      }
+    } else alert("Please Login");
+  };
+
   return (
     <Container>
       <Flex>
@@ -142,7 +163,7 @@ const TestComponent = ({ live }) => {
             value={desc}
             onChange={e => UpdateDesc(e.target.value)}
           ></Input>
-          <Button onClick={() => console.log(desc, live.code)}>Submit</Button>
+          <Button onClick={() => Submit(desc, live.code)}>Submit</Button>
         </Form>
       )}
     </Container>

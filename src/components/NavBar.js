@@ -8,7 +8,7 @@ import TemporaryDrawer from "./SideDrawer";
 import { Link as _Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../actions/auth";
-import { auth } from "../fbConfig";
+import { signOut } from "../fbConfig";
 import { UserContext } from "../porvider/userProvider";
 
 const Link = styled(_Link)`
@@ -17,6 +17,34 @@ const Link = styled(_Link)`
 `;
 
 const Button = styled(_Link)`
+  border: 2px solid #777;
+  outline: none;
+  text-decoration: none;
+  align-items: center;
+  min-height: unset;
+  min-width: 140px;
+  // padding-right: 10px;
+  // padding-left: 10px;
+  background-color: rgb(51, 51, 51);
+  font-family: aktiv-grotesk, sans-serif;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 35px;
+  -webkit-box-pack: center;
+  text-align: center;
+  :hover {
+    cursor: pointer;
+    // border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+    // font: 400 11px system-ui;
+    background-color: rgb(84, 84, 84);
+  }
+`;
+const Bbutton = styled.button`
   border: 2px solid #777;
   outline: none;
   text-decoration: none;
@@ -65,6 +93,7 @@ const AppBar = styled.div`
   -webkit-box-pack: justify !important;
   justify-content: space-between !important;
   margin-bottom: 7vh;import { provider } from '../fbConfig';
+import { auth } from 'firebase';
 
 `;
 
@@ -92,9 +121,9 @@ const ButtonAppBar = props => {
       <UserContext.Consumer>
         {user =>
           user ? (
-            <Button color="inherit" to="/">
+            <Bbutton color="inherit" onClick={() => signOut()}>
               LogOut
-            </Button>
+            </Bbutton>
           ) : (
             <Button color="inherit" to="/login">
               LogIn

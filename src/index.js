@@ -6,11 +6,14 @@ import * as serviceWorker from "./serviceWorker";
 import UserProvider from "./porvider/userProvider";
 
 import "@elastic/eui/dist/eui_theme_light.css";
+import CodeProvider from "./porvider/codeProvider";
 
 ReactDOM.render(
-  <UserProvider>
-    <App />
-  </UserProvider>,
+  <CodeProvider>
+    <UserProvider>
+      <App />
+    </UserProvider>
+  </CodeProvider>,
   document.getElementById("root"),
 );
 

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import "./App.css";
 import Editor from "./components/Editor";
 import NavBar from "./components/NavBar";
-import codes from "./constants/codes";
+// import codes from "./constants/codes";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import store from "./Store";
@@ -13,6 +13,7 @@ import { Typography as _Typography } from "@material-ui/core";
 import { EuiSpacer } from "@elastic/eui";
 import SignUp from "./components/SignUp";
 import { auth } from "./fbConfig";
+import { CodeContext } from "./porvider/codeProvider";
 
 const Typography = styled(_Typography)`
   width: 90vh;
@@ -34,6 +35,14 @@ const App = props => {
     console.log("props", props);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  // const user = React.useContext(UserContext);
+
+  let codes = React.useContext(CodeContext);
+  let dsa = null;
+  if (codes && codes.items) {
+    dsa = codes.items;
+    // console.log("dsa", dsa);
+  }
 
   return (
     <Router>
@@ -44,9 +53,12 @@ const App = props => {
           <Route path="/Community">
             <Full>
               <Typography variant="h5"> Try out various components</Typography>
-              {codes.map(code => (
-                <Editor code={code} />
-              ))}
+              {dsa &&
+                dsa.map(({ id, code, desc, email }) => (
+                  <div key={id}>
+                    <Editor code={code} />
+                  </div>
+                ))}
               <EuiSpacer size="s" />
             </Full>
           </Route>
