@@ -8,6 +8,8 @@ import {
 } from "@elastic/eui";
 
 import styled from "styled-components";
+import { autheticate } from "../actions/auth";
+import { connect } from "react-redux";
 
 const Container = styled.div`
   width: 80vw;
@@ -62,19 +64,24 @@ class SignUp extends Component {
   Sign = () => {
     auth
       .createUserWithEmailAndPassword(this.state.semail, this.state.spassword)
-      .then(u => console.log("u", u));
-    this.props.history.push("/");
+      .then(({ user }) => {
+        this.props.autheticate({ email: user.email });
+        this.props.history.push("/");
+      });
   };
 
   Log = () => {
     auth
       .signInWithEmailAndPassword(this.state.lemail, this.state.lpassword)
-      .then(u => console.log("u", u));
-    this.props.history.push("/");
+      .then(({ user }) => {
+        this.props.autheticate({ email: user.email });
+        this.props.history.push("/");
+      });
   };
 
   render() {
     let { semail, spassword, lemail, lpassword } = this.state;
+    // console.log("this.props", this.props);
     return (
       <Container>
         <Flex>
@@ -128,4 +135,4 @@ class SignUp extends Component {
   }
 }
 
-export default withRouter(SignUp);
+export default withRouter(connect(null, { autheticate })(SignUp));

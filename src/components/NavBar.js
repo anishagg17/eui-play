@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
@@ -6,6 +6,10 @@ import Typography from "@material-ui/core/Typography";
 import styled from "styled-components";
 import TemporaryDrawer from "./SideDrawer";
 import { Link as _Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "../actions/auth";
+import { auth } from "../fbConfig";
+import { UserContext } from "../porvider/userProvider";
 
 const Link = styled(_Link)`
   text-decoration: none;
@@ -60,7 +64,8 @@ const AppBar = styled.div`
   align-items: center !important;
   -webkit-box-pack: justify !important;
   justify-content: space-between !important;
-  margin-bottom: 7vh;
+  margin-bottom: 7vh;import { provider } from '../fbConfig';
+
 `;
 
 const useStyles = makeStyles(theme => ({
@@ -75,19 +80,34 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar() {
+const ButtonAppBar = props => {
   const classes = useStyles();
   const options = {};
-
   return (
     <AppBar position="static" {...options}>
       <TemporaryDrawer />
       <Typography variant="h6" className={classes.title}>
         <Link to="">Eui-Play</Link>
       </Typography>
-      <Button color="inherit" to="/login">
-        Login
-      </Button>
+      <UserContext.Consumer>
+        {user =>
+          user ? (
+            <Button color="inherit" to="/">
+              LogOut
+            </Button>
+          ) : (
+            <Button color="inherit" to="/login">
+              LogIn
+            </Button>
+          )
+        }
+      </UserContext.Consumer>
     </AppBar>
   );
-}
+};
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps, { logout })(ButtonAppBar);

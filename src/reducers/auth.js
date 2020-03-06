@@ -1,39 +1,26 @@
+import { auth } from "firebase";
+
 const initialState = {
-  token: localStorage.getItem("token"),
-  isAuthenticated: false,
-  loading: true,
   user: null,
 };
-export default function(state = initialState, action) {
+
+export default async function(state = initialState, action) {
   const { type, payload } = action;
+
   switch (type) {
-    case "USER_LOADED":
+    case "SET_USER":
+      await auth.onAuthStateChanged(u => {
+        console.log("u", u);
+      });
+      console.log(payload);
       return {
-        ...state,
-        isAuthenticated: true,
-        loading: false,
         user: payload,
       };
-    case "REGISTER_SUCCESS":
-    case "LOGIN_SUCCESS":
-      localStorage.setItem("token", payload.token);
+
+    case "REMOVE_USER":
+      console.log("loggedout");
       return {
-        ...state,
-        ...payload,
-        isAuthenticated: true,
-        loading: false,
-      };
-    case "AUTH_ERROR":
-    case "REGISTER_FAIL":
-    case "LOGIN_FAIL":
-    case "LOGOUT":
-    case "ACCOUNT_DELETED":
-      localStorage.removeItem("token");
-      return {
-        ...state,
-        token: null,
-        isAuthenticated: false,
-        loading: false,
+        user: null,
       };
     default:
       return state;

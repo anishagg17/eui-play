@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import "./App.css";
 import Editor from "./components/Editor";
 import NavBar from "./components/NavBar";
@@ -12,6 +12,7 @@ import styled from "styled-components";
 import { Typography as _Typography } from "@material-ui/core";
 import { EuiSpacer } from "@elastic/eui";
 import SignUp from "./components/SignUp";
+import { auth } from "./fbConfig";
 
 const Typography = styled(_Typography)`
   width: 90vh;
@@ -28,7 +29,12 @@ const Typography = styled(_Typography)`
 const Full = styled.div`
   heigh: 100vh;
 `;
-function App() {
+const App = props => {
+  useEffect(() => {
+    console.log("props", props);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Router>
       <Provider store={store}>
@@ -44,12 +50,13 @@ function App() {
               <EuiSpacer size="s" />
             </Full>
           </Route>
-          <Route path="/SignUp" component={SignUp} />
+          <Route path="/login" component={SignUp} />
           <Route path="/" component={PureEui} />
         </Switch>
       </Provider>
     </Router>
   );
-}
+};
 
+// export default connect(null, { auth })(App);
 export default App;
