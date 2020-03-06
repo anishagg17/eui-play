@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import {
-  EuiButton,
-  EuiFormRow,
-  EuiPopover,
-  EuiSpacer,
-  EuiSwitch,
-  EuiBadge,
+  EuiFlexItem,
   EuiCodeEditor,
+  EuiFlexGroup,
+  EuiButton,
 } from "@elastic/eui";
 import { Typography as _Typography } from "@material-ui/core";
 import EditModal from "./EditModal";
@@ -123,9 +120,157 @@ export default class PureEui extends Component {
           ) : (
             <>
               {showDemo ? (
-                <EuiButton onClick={() => window.alert("Button clicked")}>
-                  Primary
-                </EuiButton>
+                <div>
+                  <EuiFlexGroup gutterSize="s" alignItems="center">
+                    <EuiFlexItem grow={false}>
+                      <EuiButton onClick={() => window.alert("Button clicked")}>
+                        Primary
+                      </EuiButton>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        fill
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Filled
+                      </EuiButton>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        size="s"
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Small
+                      </EuiButton>
+                    </EuiFlexItem>
+                  </EuiFlexGroup>
+
+                  <EuiFlexGroup gutterSize="s" alignItems="center">
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        color="secondary"
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Secondary
+                      </EuiButton>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        color="secondary"
+                        fill
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Filled
+                      </EuiButton>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        color="secondary"
+                        size="s"
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Small
+                      </EuiButton>
+                    </EuiFlexItem>
+                  </EuiFlexGroup>
+
+                  <EuiFlexGroup gutterSize="s" alignItems="center">
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        color="warning"
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Warning
+                      </EuiButton>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        color="warning"
+                        fill
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Filled
+                      </EuiButton>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        color="warning"
+                        size="s"
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Small
+                      </EuiButton>
+                    </EuiFlexItem>
+                  </EuiFlexGroup>
+
+                  <EuiFlexGroup gutterSize="s" alignItems="center">
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        color="danger"
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Danger
+                      </EuiButton>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        color="danger"
+                        fill
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Filled
+                      </EuiButton>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        color="danger"
+                        size="s"
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Small
+                      </EuiButton>
+                    </EuiFlexItem>
+                  </EuiFlexGroup>
+
+                  <EuiFlexGroup gutterSize="s" alignItems="center">
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        isDisabled
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Disabled
+                      </EuiButton>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        isDisabled
+                        fill
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Filled
+                      </EuiButton>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        isDisabled
+                        size="s"
+                        onClick={() => window.alert("Button clicked")}
+                      >
+                        Small
+                      </EuiButton>
+                    </EuiFlexItem>
+                  </EuiFlexGroup>
+                </div>
               ) : (
                 <>
                   <EuiCodeEditor
