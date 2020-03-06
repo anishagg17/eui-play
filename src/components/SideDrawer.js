@@ -13,7 +13,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link as _Link } from "react-router-dom";
 
-import { EuiSpacer } from "@elastic/eui";
+import { EuiSpacer, EuiIcon } from "@elastic/eui";
 const Link = styled(_Link)`
   * {
     text-decoration: none;
@@ -71,20 +71,30 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {["Community", "PureEui", "Create"].map((text, index) => (
-          <Link to={`/${text}`}>
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <InboxIcon style={{ color: "#ddd" }} />
-                ) : (
-                  <MailIcon style={{ color: "#ddd" }} />
-                )}
-              </ListItemIcon>
-              <ListItem style={{ color: "#ddd" }}>{text}</ListItem>
-            </ListItem>
-          </Link>
-        ))}
+        <Link to={`/PureEui`}>
+          <ListItem button>
+            <ListItemIcon>
+              <EuiIcon type="logoElastic" color="#ddd" size="l" />
+            </ListItemIcon>
+            <ListItem style={{ color: "#ddd" }}>PureEui</ListItem>
+          </ListItem>
+        </Link>
+        <Link to={`/Community`}>
+          <ListItem button>
+            <ListItemIcon>
+              <EuiIcon type="visTimelion" color="#ddd" size="l" />
+            </ListItemIcon>
+            <ListItem style={{ color: "#ddd" }}>Community</ListItem>
+          </ListItem>
+        </Link>
+        <Link to={`/Create`}>
+          <ListItem button>
+            <ListItemIcon>
+              <EuiIcon type="createAdvancedJob" color="#ddd" size="l" />
+            </ListItemIcon>
+            <ListItem style={{ color: "#ddd" }}>Create</ListItem>
+          </ListItem>
+        </Link>
       </List>
       <Divider />
     </div>

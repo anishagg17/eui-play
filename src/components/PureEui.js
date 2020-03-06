@@ -7,9 +7,14 @@ import {
   EuiSpacer,
   EuiSwitch,
   EuiBadge,
+  EuiCodeEditor,
 } from "@elastic/eui";
 import { Typography as _Typography } from "@material-ui/core";
 import EditModal from "./EditModal";
+import codes from "../constants/codes";
+
+import "brace/mode/javascript";
+import "brace/theme/github";
 
 const Typography = styled(_Typography)`
   width: 75%;
@@ -40,7 +45,7 @@ const Flex = styled.div`
   //   background: white;
   border-bottom: ${props =>
     props && (props.border ? "1px solid #444" : "none")};
-  //   justify-content: flex-start;
+  justify-content: ${props => props.justify && "flex-start"};
   //   align-items: flex-start;
   color: rgb(223, 229, 239);
 
@@ -51,6 +56,15 @@ const Flex = styled.div`
 
 const Height = styled.div`
   height: 75vh;
+  width: 75%;
+`;
+
+const View = styled.div`
+  border: 2px solid rgb(51, 51, 51);
+  background-color: rgb(31, 31, 31);
+  read-only: true;
+  height: 100%;
+  width: 100%;
 `;
 
 const FlexItem = styled.div`
@@ -74,6 +88,13 @@ export default class PureEui extends Component {
       showDemo: !prevState.showDemo,
     }));
   };
+
+  componentDidMount() {
+    // this.setState(prevState => ({
+    //   showCode: !prevState.showCode,
+    //   showDemo: !prevState.showDemo,
+    // }));
+  }
 
   closeModal = () => {
     this.setState({ showEditor: false });
@@ -100,7 +121,33 @@ export default class PureEui extends Component {
           {showEditor ? (
             <EditModal closeModal={this.closeModal} />
           ) : (
-            <Flex>preview or code</Flex>
+            <>
+              {showDemo ? (
+                <EuiButton onClick={() => window.alert("Button clicked")}>
+                  Primary
+                </EuiButton>
+              ) : (
+                <>
+                  <EuiCodeEditor
+                    mode="javascript"
+                    theme="github"
+                    width="100%"
+                    value={codes[0]}
+                    isReadOnly
+                    setOptions={{
+                      fontSize: "14px",
+                      enableBasicAutocompletion: true,
+                      enableSnippets: true,
+                      enableLiveAutocompletion: true,
+                    }}
+                    onBlur={() => {
+                      console.log("blur");
+                    }} // eslint-disable-line no-console
+                    aria-label="Code Editor"
+                  />
+                </>
+              )}
+            </>
           )}
         </Height>
       </Container>

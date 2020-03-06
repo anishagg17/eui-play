@@ -43,7 +43,7 @@ function App() {
               <EuiSpacer size="s" />
             </Full>
           </Route>
-          <Route path="/PureEui" exact component={PureEui} />
+          <Route path="/" component={PureEui} />
         </Switch>
       </Provider>
     </Router>

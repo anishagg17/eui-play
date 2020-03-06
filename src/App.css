@@ -54,4 +54,5 @@ li,html,*{
 } 
 .xedit div textarea{
   /* height: 80vh; */
+  line-break: auto;
 }
