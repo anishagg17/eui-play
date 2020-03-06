@@ -10,7 +10,7 @@ class UserProvider extends Component {
   unsubscribeFromFireStore = null;
   componentDidMount = async () => {
     await auth.onAuthStateChanged(u => {
-      console.log("u", u);
+      // console.log("u", u);
       if (u) this.setState({ user: u });
       else this.setState({ user: null });
     });

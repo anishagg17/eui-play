@@ -6,17 +6,7 @@ import {
   LivePreview as _LivePreview,
 } from "react-live";
 import styled from "styled-components";
-import { makeStyles } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
-
-import {
-  EuiButton,
-  EuiFormRow,
-  EuiPopover,
-  EuiSpacer,
-  EuiSwitch,
-  EuiBadge,
-} from "@elastic/eui";
+import scope from "../constants/scope";
 
 const Container = styled.div`
   width: 90vh;
@@ -64,18 +54,6 @@ export default class Editor extends Component {
   render() {
     let { code } = this.props;
     if (!code) code = "<strong>Hello World!</strong>";
-
-    const scope = {
-      styled,
-      EuiButton,
-      EuiFormRow,
-      EuiPopover,
-      EuiSpacer,
-      EuiSwitch,
-      CircularProgress,
-      makeStyles,
-      EuiBadge,
-    };
 
     return (
       <Container>

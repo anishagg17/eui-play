@@ -5,6 +5,7 @@ import { EuiSpacer } from "@elastic/eui";
 import styled from "styled-components";
 import { UserContext } from "../porvider/userProvider";
 import { firestore } from "../fbConfig";
+import scope from "../constants/scope";
 
 const Container = styled.div`
   width: 80vw;
@@ -120,23 +121,31 @@ const Input = styled.input`
   }
 `;
 
-const TestComponent = ({ live }) => {
+const TestComponent = props => {
+  const { live } = props;
   const user = React.useContext(UserContext);
   let email = null;
   if (user) email = user.email;
   // const { email } = user;
   const Result = live.element;
   const [desc, UpdateDesc] = React.useState("");
-  // console.log(live);
-  const Submit = async (d, code) => {
+  const [code, UpdateCode] = React.useState(live.code);
+
+  // console.log(props.live.onChange);
+  const Submit = async () => {
     if (email) {
-      let item = { desc: d, code };
+      let item = {
+        desc,
+        code: document.getElementsByClassName("x-sub")[0].firstElementChild
+          .value,
+      };
       item.email = email;
       console.log("item", item);
 
       try {
-        const ref = await firestore.collection("Eui").add(item);
-        console.log("ref", ref);
+        // const ref =
+        await firestore.collection("Eui").add(item);
+        // console.log("ref", ref);
       } catch (error) {
         console.log("error", error);
       }
@@ -146,7 +155,8 @@ const TestComponent = ({ live }) => {
   return (
     <Container>
       <Flex>
-        <StyledEditor />
+        {/* <StyledEditor onChange={e => UpdateCode(e)} /> */}
+        <StyledEditor className="x-sub" />
         <LivePreview>
           <Result />
         </LivePreview>
@@ -163,7 +173,7 @@ const TestComponent = ({ live }) => {
             value={desc}
             onChange={e => UpdateDesc(e.target.value)}
           ></Input>
-          <Button onClick={() => Submit(desc, live.code)}>Submit</Button>
+          <Button onClick={() => Submit()}>Submit</Button>
         </Form>
       )}
     </Container>
@@ -189,7 +199,10 @@ export default class Live extends React.Component {
   render() {
     return (
       <>
-        <LiveProvider code={hooksExample}>
+        <LiveProvider
+          code='<div><EuiLoadingSpinner size="m" /></div>'
+          scope={scope}
+        >
           <LiveComponent />
         </LiveProvider>
         <EuiSpacer size="l" />
