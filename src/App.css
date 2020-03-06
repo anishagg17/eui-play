@@ -41,3 +41,17 @@
   overflow: scroll !important;
   -webkit-text-fill-color: inherit !important;
 }
+
+li,html,*{
+  text-decoration: none !important;
+  margin: 0px;
+  padding: 0px;
+}
+
+.xedit div pre{
+  /* display:hidden; */
+  height: 0px !important;
+} 
+.xedit div textarea{
+  /* height: 80vh; */
+}

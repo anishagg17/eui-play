@@ -15,6 +15,7 @@ import {
   EuiPopover,
   EuiSpacer,
   EuiSwitch,
+  EuiBadge,
 } from "@elastic/eui";
 
 const Container = styled.div`
@@ -73,6 +74,7 @@ export default class Editor extends Component {
       EuiSwitch,
       CircularProgress,
       makeStyles,
+      EuiBadge,
     };
 
     return (

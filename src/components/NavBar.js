@@ -1,27 +1,35 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 // import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import styled from "styled-components";
+import TemporaryDrawer from "./SideDrawer";
+import { Link as _Link } from "react-router-dom";
 
-const Button = styled.button`
+const Link = styled(_Link)`
+  text-decoration: none;
+  color: #fff;
+`;
+
+const Button = styled(_Link)`
   border: 2px solid #777;
   outline: none;
+  text-decoration: none;
   align-items: center;
   min-height: unset;
   min-width: 140px;
-  padding-right: 16px;
-  padding-left: 16px;
+  // padding-right: 10px;
+  // padding-left: 10px;
   background-color: rgb(51, 51, 51);
   font-family: aktiv-grotesk, sans-serif;
   color: #ffffff;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 35px;
   -webkit-box-pack: center;
   text-align: center;
@@ -38,9 +46,10 @@ const AppBar = styled.div`
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   background-color: rgb(31, 31, 31);
-
+  overflow: hidden;
   color: #ffffff;
   height: 9vh;
+  border-bottom: 1px solid rgb(41, 41, 41);
   padding: 2vw;
   line-height: 26px;
   font-family: Inter, sans-serif;
@@ -68,28 +77,17 @@ const useStyles = makeStyles(theme => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-  const options = {
-    fontFamily: "Inter, sans-serif",
-    fontSize: "16px",
-    fontWeight: 400,
-  };
+  const options = {};
 
   return (
-    <AppBar position="static" color="white" {...options}>
-      {/* <Toolbar> */}
-      <IconButton
-        edge="start"
-        className={classes.menuButton}
-        color="inherit"
-        aria-label="menu"
-      >
-        <MenuIcon />
-      </IconButton>
+    <AppBar position="static" {...options}>
+      <TemporaryDrawer />
       <Typography variant="h6" className={classes.title}>
-        Eui-Play
+        <Link to="">Eui-Play</Link>
       </Typography>
-      <Button color="inherit">Login</Button>
-      {/* </Toolbar> */}
+      <Button color="inherit" to="/login">
+        Login
+      </Button>
     </AppBar>
   );
 }

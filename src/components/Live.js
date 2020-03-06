@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import _ErrorIcon from "@material-ui/icons/Error";
 import { LiveProvider, LiveEditor, withLive } from "react-live";
+import { EuiSpacer } from "@elastic/eui";
 
 const Container = styled.div`
   width: 80vw;
@@ -48,9 +49,7 @@ const ErrorIcon = styled(_ErrorIcon)`
 `;
 
 const LiveError = styled.div`
-  border: 2px solid rgb(51, 51, 51);
   height: 20vh;
-  background-color: rgb(31, 31, 31);
   box-sizing: border-box;
   padding: 8px;
   background-color: rgb(84, 26, 20);
@@ -168,9 +167,13 @@ function LikeButton() {
 export default class Live extends React.Component {
   render() {
     return (
-      <LiveProvider code="<div>hello</div>">
-        <LiveComponent />
-      </LiveProvider>
+      <>
+        <LiveProvider code="<div>hello</div>">
+          <LiveComponent />
+        </LiveProvider>
+        <EuiSpacer size="l" />
+        <EuiSpacer size="l" />
+      </>
     );
   }
 }
