@@ -1,8 +1,8 @@
 import React from "react";
-import styled from "styled-components";
 import _ErrorIcon from "@material-ui/icons/Error";
 import { LiveProvider, LiveEditor, withLive } from "react-live";
 import { EuiSpacer } from "@elastic/eui";
+import styled from "styled-components";
 
 const Container = styled.div`
   width: 80vw;
@@ -155,10 +155,10 @@ function LikeButton() {
   const [likes, increaseLikes] = React.useState(0)
   return (
     <>
-      <p class="likes">{likes} likes</p>
+      <p style={{widht:"10px"}}>{likes} likes</p>
       <button
-        class="button"
-        onClick={() => increaseLikes(likes + 1)} />
+      style={{widht:"10px"}}
+        onClick={() => increaseLikes(likes + 1)} >button</button>
     </>
   )
 }
@@ -168,7 +168,7 @@ export default class Live extends React.Component {
   render() {
     return (
       <>
-        <LiveProvider code="<div>hello</div>">
+        <LiveProvider code={hooksExample}>
           <LiveComponent />
         </LiveProvider>
         <EuiSpacer size="l" />

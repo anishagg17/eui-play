@@ -11,6 +11,7 @@ import PureEui from "./components/PureEui";
 import styled from "styled-components";
 import { Typography as _Typography } from "@material-ui/core";
 import { EuiSpacer } from "@elastic/eui";
+import SignUp from "./components/SignUp";
 
 const Typography = styled(_Typography)`
   width: 90vh;
@@ -43,6 +44,7 @@ function App() {
               <EuiSpacer size="s" />
             </Full>
           </Route>
+          <Route path="/SignUp" component={SignUp} />
           <Route path="/" component={PureEui} />
         </Switch>
       </Provider>
